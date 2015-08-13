@@ -3,6 +3,6 @@ class IndexController < ApplicationController
 	end
 	
 	def timer
-		@current_time = Time.now
+		@current_time = Time.zone.now
 	end
 end
