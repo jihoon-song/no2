@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
 	if Time.now.hour < 22 || Time.now.hour <5 
 		root :to => "index#timer" 
 	else
