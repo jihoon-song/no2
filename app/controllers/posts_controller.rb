@@ -18,6 +18,6 @@ class PostsController < ApplicationController
 	end
 
 	def my_posts
-		@posts = Post.find[:]
+		@current_user = User.find(params[:id])
 	end
 end
