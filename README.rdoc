@@ -7,7 +7,21 @@ Things you may want to cover:
 
 * Ruby version
 
+
+Ruby version 2.0 and up
+
+Rails version 4.0 and up
+
+
 * System dependencies
+
+
+Devise 3.5.2
+
+```gem 'devise'```
+
+https://github.com/plataformatec/devise
+
 
 * Configuration
 
