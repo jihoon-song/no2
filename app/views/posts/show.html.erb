@@ -1,6 +1,11 @@
-<% @posts.each do |post| %>
-	<%= @posts.title %>
-	<%= @posts.content %>
+<%= link_to "나의 글" , :controller => :posts , :action => :my_posts %>
+<%= link_to "글 쓰기" , :controller => :posts , :action => :new %>
 
-	<%= @posts.user.email %>
+
+<% @posts.each do |post| %>
+	<div class="post">
+		<%= post.title %>
+		<%= post.content %>
+		<%= post.user.email %>
+	</div>
 <% end %>

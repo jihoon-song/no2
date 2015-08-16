@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
+	before_action :authenticate_user!
 	def show
-		@posts = Post.find(params[:id])
+		@posts = Post.all
 	end
 
 	def new
-		@user_id = current_user.id
+		
 	end
 
 	def write
@@ -13,5 +14,10 @@ class PostsController < ApplicationController
 		@post.title = params[:title]
 		@post.content = params[:content]
 		@post.save
+		redirect_to controller: "posts" ,action: "show"
+	end
+
+	def my_posts
+		@posts = Post.find[:]
 	end
 end
