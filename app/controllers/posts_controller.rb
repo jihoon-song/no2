@@ -27,6 +27,7 @@ class PostsController < ApplicationController
 		@post.user_id = params[:id]
 		@post.title = params[:title]
 		@post.content = params[:content]
+		@post.background = params[:image_file]
 		@post.save
 		redirect_to controller: "posts" ,action: "show"
 	end

@@ -5,6 +5,8 @@ class CreatePosts < ActiveRecord::Migration
 
       t.string :title , null: false
       t.text :content , null: false
+
+      t.string :background
       t.timestamps null: false
     end
   end

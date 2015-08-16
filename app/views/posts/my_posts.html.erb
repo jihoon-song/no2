@@ -1,5 +1,6 @@
 <% @current_user.posts.each do |post| %>
 	<div class="post">
+		<%= image_tag post.background.url if post.background? %>
 		<%= post.title %>
 		<%= post.content %>
 		<%= post.user.email %>
