@@ -8,6 +8,20 @@ class PostsController < ApplicationController
 		
 	end
 
+	def comment
+		comment = Comment.new
+		comment.content = params[:comment]
+		comment.user_id = params[:id]
+		comment.post_id = params[:post_id]
+		comment.save
+
+		redirect_to controller: "posts" ,action: "show"
+	end
+
+	def like
+	end
+
+
 	def write
 		@post = Post.new
 		@post.user_id = params[:id]
@@ -18,6 +32,5 @@ class PostsController < ApplicationController
 	end
 
 	def my_posts
-		@posts = Post.find[:]
 	end
 end
