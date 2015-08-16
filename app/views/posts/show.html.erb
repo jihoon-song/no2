@@ -1,4 +1,6 @@
-<%= @post.title %>
-<%= @post.content %>
+<% @posts.each do |post| %>
+	<%= @posts.title %>
+	<%= @posts.content %>
 
-<%= @post.user.name %>
+	<%= @posts.user.email %>
+<% end %>

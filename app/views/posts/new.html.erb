@@ -1,0 +1,15 @@
+<h3>새로운 포스트</h3>
+
+<form action = "/posts/write/<%= @user_id %>" method="POST">
+  <label>제목</label>
+  <br class="clear">
+  <textarea rows="1" cols="50" name="title"></textarea>
+  <br class="clear">
+  <label>내용</label>
+  <br class="clear">
+  <textarea rows="10" cols="50" name="content"></textarea>
+  <br class="clear">
+  <input type="file" name="image_file">
+  <input type="submit" value="Submit">
+	
+</form>	
