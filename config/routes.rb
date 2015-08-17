@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-	if Time.zone.now.hour < 20 and Time.zone.now.hour > 5
+	if Time.zone.now.hour < 20 and Time.zone.now.hour > 15
 		root :to => "index#timer" 
 	else
 		root :to => "index#intro"

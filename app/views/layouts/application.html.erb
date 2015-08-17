@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>No2</title>
+  <title>별 헤는 밤</title>
   	<!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -22,22 +22,24 @@
 		    <ul class="sidebar-nav">
 		        <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
 		        <li class="sidebar-brand">
-		            <a href="#top"  onclick = $("#menu-close").click(); >Start Bootstrap</a>
+		            <a href="#"  onclick = $("#menu-close").click(); >별 헤는 밤</a>
 		        </li>
 		        <li>
-		            <a href="#top" onclick = $("#menu-close").click(); >Home</a>
+		            <a href="/" onclick = $("#menu-close").click(); >Intro</a>
 		        </li>
 		        <li>
-		            <a href="#about" onclick = $("#menu-close").click(); >About</a>
+		            <a href="/posts/show" onclick = $("#menu-close").click(); >Newsfeed</a>
+		        </li>
+		        <% if user_signed_in? %>
+		        <li>
+		            <a href="/posts/my_posts/<%= current_user.id %>" onclick = $("#menu-close").click(); >My Page</a>
+		        </li>
+		        <% end %>
+		        <li>
+		            <a href="/posts/new" onclick = $("#menu-close").click(); >New Post</a>
 		        </li>
 		        <li>
-		            <a href="#services" onclick = $("#menu-close").click(); >Services</a>
-		        </li>
-		        <li>
-		            <a href="#portfolio" onclick = $("#menu-close").click(); >Portfolio</a>
-		        </li>
-		        <li>
-		            <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
+		            <a href="#" onclick = $("#menu-close").click(); >Contact</a>
 		        </li>
 		    </ul>
 		</nav>
