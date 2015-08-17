@@ -19,6 +19,13 @@ class PostsController < ApplicationController
 	end
 
 	def like
+		post = Post.find(params[:post_id])
+		user = params[:id]
+		post.who_like << user
+		post.likes = post.who_like.count
+		post.save
+
+		redirect_to controller: "posts" ,action: "show"
 	end
 
 
@@ -27,6 +34,7 @@ class PostsController < ApplicationController
 		@post.user_id = params[:id]
 		@post.title = params[:title]
 		@post.content = params[:content]
+		@post.likes = 0
 		@post.save
 		redirect_to controller: "posts" ,action: "show"
 	end

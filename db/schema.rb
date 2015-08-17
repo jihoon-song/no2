@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20150813072058) do
     t.text     "content",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "who_like"
+    t.integer  "likes"
   end
 
   create_table "users", force: :cascade do |t|

@@ -6,6 +6,8 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title , null: false
       t.text :content , null: false
       t.timestamps null: false
+	  t.integer :who_like, array: true, default: [] 	  
+	  t.integer :likes
     end
   end
 end
