@@ -4,5 +4,10 @@
 		<%= post.title %>
 		<%= post.content %>
 		<%= post.user.email %>
+		<label>댓글:</label>
+		<% post.comments.each do |comment| %>
+			<%= comment.user.email %>
+			<%= comment.content %><br>
+		<% end %>
 	</div>
 <% end %>
