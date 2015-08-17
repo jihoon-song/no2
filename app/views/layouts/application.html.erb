@@ -27,17 +27,17 @@
 		        <li>
 		            <a href="/" onclick = $("#menu-close").click(); >Intro</a>
 		        </li>
-		        <li>
-		            <a href="/posts/show" onclick = $("#menu-close").click(); >Newsfeed</a>
-		        </li>
 		        <% if user_signed_in? %>
-		        <li>
-		            <a href="/posts/my_posts/<%= current_user.id %>" onclick = $("#menu-close").click(); >My Page</a>
-		        </li>
+			        <li>
+			            <a href="/posts/show" onclick = $("#menu-close").click(); >Newsfeed</a>
+			        </li>
+			        <li>
+			            <a href="/posts/my_posts/<%= current_user.id %>" onclick = $("#menu-close").click(); >My Page</a>
+			        </li>
+			        <li>
+			            <a href="/posts/new" onclick = $("#menu-close").click(); >New Post</a>
+			        </li>
 		        <% end %>
-		        <li>
-		            <a href="/posts/new" onclick = $("#menu-close").click(); >New Post</a>
-		        </li>
 		        <li>
 		            <a href="#" onclick = $("#menu-close").click(); >Contact</a>
 		        </li>
@@ -51,7 +51,7 @@
 		    <div class="container">
 		        <div class="row">
 		            <div class="col-lg-10 col-lg-offset-1 text-center">
-		                <h4><strong>새벽공간 23:30</strong>
+		                <h4><strong>별 헤는 밤</strong>
 		                </h4>
 		                <p>02841 서울특별시 성북구 안암로 145<br>고려대학교</p>
 		                <ul class="list-unstyled">
@@ -72,7 +72,7 @@
 		                    </li>
 		                </ul>
 		                <hr class="small">
-		                <p class="text-muted">Copyright &copy; 새벽공간 23:30 2015</p>
+		                <p class="text-muted">Copyright &copy; 별 헤는 밤 2015</p>
 		            </div>
 		        </div>
 		    </div>
