@@ -1,6 +1,15 @@
-<%= link_to "나의 글" , :controller => :posts , :action => :my_posts , :id => current_user.id %>
-<%= link_to "글 쓰기" , :controller => :posts , :action => :new %>
 
+<div class="container" id="nav-container" style="max-width:600px;">
+	<nav class="navbar">
+		<ul class="nav navbar-nav navbar-left">
+			<li><%= link_to "별 헤는 밤", :controller => :posts , :action => :show %></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li><%= link_to "나의 글" , :controller => :posts , :action => :my_posts , :id => current_user.id %></li>
+			<li><%= link_to "글 쓰기" , :controller => :posts , :action => :new %></li>
+		</ul>
+	</nav>
+</div>
 
 <% @posts.each do |post| %>
 	<div class="post">
