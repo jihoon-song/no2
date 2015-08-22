@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
 	before_action :authenticate_user!
 	def show
-		@posts = Post.all
+		# post를 역순으로 가져 옴 
+		@posts = Post.all.reverse
 	end
 
 	def new
