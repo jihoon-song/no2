@@ -2,11 +2,16 @@
 <!-- Header -->
 <header id="top" class="header">
     <div class="text-vertical-center">
-        <h1>새벽공간 23:30</h1>
-        <h3>당신만의 공간</h3>
+        <h1>별 헤는 밤</h1>
+        <h3>별 헤는 밤, 당신만의 공간</h3>
         <br>
-        <a href="#about" class="btn btn-dark btn-lg">더 알아보기</a>
-        <a href="/posts/show" class="btn btn-dark btn-lg">들어가기</a>
+        <% unless user_signed_in? %>
+            <a href="/users/sign_in" class="btn btn-dark btn-lg">로그인</a>
+            <a href="/users/sign_up" class="btn btn-dark btn-lg">회원가입</a>
+        <% else %>
+            <a href="#about" class="btn btn-dark btn-lg">알아보기</a>
+            <a href="/posts/show" class="btn btn-dark btn-lg">들어가기</a>
+        <% end %>
     </div>
 </header>
 
@@ -113,28 +118,28 @@
                     <div class="col-md-6">
                         <div class="portfolio-item">
                             <a href="#">
-                                <img class="img-portfolio img-responsive" src="img/portfolio-1.jpg">
+                                <img class="img-portfolio img-responsive" src="">
                             </a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="portfolio-item">
                             <a href="#">
-                                <img class="img-portfolio img-responsive" src="img/portfolio-2.jpg">
+                                <img class="img-portfolio img-responsive" src="">
                             </a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="portfolio-item">
                             <a href="#">
-                                <img class="img-portfolio img-responsive" src="img/portfolio-3.jpg">
+                                <img class="img-portfolio img-responsive" src="">
                             </a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="portfolio-item">
                             <a href="#">
-                                <img class="img-portfolio img-responsive" src="img/portfolio-4.jpg">
+                                <img class="img-portfolio img-responsive" src="">
                             </a>
                         </div>
                     </div>
@@ -171,17 +176,3 @@
     </small>
     </iframe>
 </section>
-
-
-
-
-
-<%= link_to "뉴스피드", :controller => :posts , :action => :show %>
-
-<% unless user_signed_in? %>
-	<%= link_to "로그인" , new_user_session_path %>
-	<p>아직 회원이 아니세요? <%= link_to "회원가입", new_user_registration_path %> </p>
-<% else %>
-	<h5><%= current_user.email %>님, 안녕하세요!</h5>
-	<%= link_to "로그아웃" , destroy_user_session_path %>
-<% end %>
