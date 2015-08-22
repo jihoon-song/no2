@@ -1,15 +1,10 @@
-<h3>새로운 포스트</h3>
-
-<form action = "/posts/write/<%= current_user.id %>" method="POST" enctype="multipart/form-data">
-  <label>제목</label>
-  <br class="clear">
-  <textarea rows="1" cols="50" name="title"></textarea>
-  <br class="clear">
-  <label>내용</label>
-  <br class="clear">
-  <textarea rows="10" cols="50" name="content"></textarea>
-  <br class="clear">
-  <input type="file" name="image_file">
-  <input type="submit" value="Submit">
-	
-</form>	
+<div class="container" style="max-width:600px;">
+  <h3>새로운 포스트</h3>
+  <%= simple_form_for @post , :url => '/posts/create', :method => 'POST' do |f| %>
+    <%= f.input :title %>
+    <%= f.input :user_id,  input_html: { type: "hidden", value: current_user.id } %><p><%=current_user.email%></p>
+    <%= f.input :content, as: :pagedown, input_html: { preview: true, rows: 15 } %>
+    <%= f.input :image_file , as: :file %> 
+    <%= f.button :submit %>
+  <% end %>
+</div>

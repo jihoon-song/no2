@@ -6,5 +6,7 @@ Rails.application.routes.draw do
 	else
 		root :to => "index#intro"
 		match ":controller(/:action(/:id))", :via => [:post, :get]
+		resources :posts
 	end
+
 end

@@ -13,3 +13,6 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( bootstrap.css )
 Rails.application.config.assets.precompile += %w( custom.css )
 Rails.application.config.assets.precompile += %w( font-awesome.css )
+
+Rails.application.config.assets.precompile += %w( pagedown_init.js )
+Rails.application.config.assets.precompile += %w( application.js )

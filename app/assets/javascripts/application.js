@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require bootstrap-sprockets
+//= require pagedown_bootstrap
+//= require pagedown_init
+//= require google-code-prettify-rails/prettify

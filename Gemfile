@@ -3,6 +3,11 @@ source 'https://rubygems.org'
 
 gem 'devise'
 gem 'carrierwave'
+gem 'pagedown-bootstrap-rails'
+gem 'bootstrap-sass'
+gem 'font-awesome-sass'
+gem 'google-code-prettify-rails'
+gem 'simple_form'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'

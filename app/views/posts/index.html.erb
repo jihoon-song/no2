@@ -14,18 +14,17 @@
 <div class="container">
 	<div class="row">
 		<% @posts.each do |post| %>
-			<div class="col-md-4">
-				<div class="post">
-					<%= post.title %>
-					<%= post.content %>
-					<%= post.user.email %>
-				</div>
-					<div>
-					댓글:
-						<% post.comments.each do |comment| %>
-							<%= comment.user.email %>
-							<%= comment.content %><br>
-						<% end %>
+			<div class="post">
+				<%= image_tag post.background.url if post.background? %>
+				<%= post.title %>
+				<%= post.content %>
+				<%= post.user.email %>
+				<div class="comment">
+					<label>댓글:</label>
+					<% post.comments.each do |comment| %>
+						<%= comment.user.email %>
+						<%= comment.content %><br>
+					<% end %>
 					<div class="write-comment">
 						<form action="/posts/comment/<%= current_user.id %>" type="POST">
 							<input type="hidden" value=<%=post.id%> name="post_id" >
@@ -35,8 +34,8 @@
 					</div>
 					<div class="likes">
 					</div>
-				</div>
-			</div>	
+				</div>	
+			</div>
 		<% end %>
 	</div>
 </div>
