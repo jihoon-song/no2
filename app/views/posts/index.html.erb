@@ -1,44 +1,50 @@
+<div class="container-fluid">
+	<div class="col-lg-10 col-lg-offset-1">
 
-<div class="container" id="nav-container" style="max-width:600px;">
-	<nav class="navbar">
-		<ul class="nav navbar-nav navbar-left">
-			<li><%= link_to "별 헤는 밤", :controller => :posts , :action => :show %></li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right">
-			<li><%= link_to "나의 글" , :controller => :posts , :action => :my_posts , :id => current_user.id %></li>
-			<li><%= link_to "글 쓰기" , "/posts/new" %></li>
-		</ul>
-	</nav>
-</div>
-
-<div class="container">
-	<div class="row">
-		<% @posts.each do |post| %>
-
-		<div class="col-md-4">
-			<div class="post">
-				<%= image_tag post.background.url if post.background? %>
-				<%= post.title %>
-				<%= post.content %>
-				<%= post.user.email %>
-				<div class="comment">
-					<label style="background-color: #FCCFB8"> <%= post.num_comment %>개의 댓글이 있습니다.</label><br>
-					<% post.comments.each do |comment| %>
-					<%= comment.user.email %>
-					<%= comment.content %><br>
-					<% end %>
-				</div>
-				<div class="write-comment">
-					<form action="/posts/comment/<%= current_user.id %>" type="POST">
-						<input type="hidden" value=<%=post.id%> name="post_id" >
-						<input type ="text" placeholder="댓글을 입력해 주세요" name="comment">
-						<input type="submit" value="입력"><br>
-					</form>
-				</div>
-				<div class="likes">
-				</div>
-			</div>	
+		<!-- 위쪽 Navbar -->
+		<div class="clearfix" id="nav-container" >
+			<nav class="navbar">
+				<ul class="nav navbar-nav navbar-left">
+					<li role="presentation"><a class="btn btn-lg" href="/posts/index">별 헤는 밤</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li role="presentation"><a class="btn" href="/posts/my_posts/<%=current_user.id%>">나의 글</a></li>
+					<li role="presentation"><a class="btn" href="/posts/new">글 쓰기</a></li>
+				</ul>
+			</nav>
 		</div>
-	<% end %>
+
+		<div class="container">
+			<div class="row">
+				<% @posts.each do |post| %>
+
+				<div class="col-md-4">
+					<div class="post">
+						<%= image_tag post.background.url if post.background? %>
+						<%= post.title %>
+						<%= post.content %>
+						<%= post.user.email %>
+						<div class="comment">
+							<label style="background-color: #FCCFB8"> <%= post.num_comment %>개의 댓글이 있습니다.</label><br>
+							<% post.comments.each do |comment| %>
+							<%= comment.user.email %>
+							<%= comment.content %><br>
+							<% end %>
+						</div>
+						<div class="write-comment">
+							<form action="/posts/comment/<%= current_user.id %>" type="POST">
+								<input type="hidden" value=<%=post.id%> name="post_id" >
+								<input type ="text" placeholder="댓글을 입력해 주세요" name="comment">
+								<input type="submit" value="입력"><br>
+							</form>
+						</div>
+						<div class="likes">
+						</div>
+					</div>	
+				</div>
+			<% end %>
+			</div>
+		</div>
+
 	</div>
 </div>
