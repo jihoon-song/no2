@@ -17,9 +17,9 @@
 
 		<div class="col-md-4">
 			<div class="post">
-				<%= image_tag post.background.url if post.background? %>
-				<%= post.title %>
-				<%= post.content %>
+				<%= image_tag post.background.url if post.background? %><br>
+				<%= post.title %><br>
+				<%= post.content %><br>
 				<%= post.user.email %>
 				<div class="comment">
 					<label style="background-color: #FCCFB8"> <%= post.num_comment %>개의 댓글이 있습니다.</label><br>
