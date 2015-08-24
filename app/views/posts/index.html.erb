@@ -13,12 +13,13 @@
 
 <div class="container">
 	<div class="row">
-	<% @posts.each do |post| %>
-		<div class="post">
-			<%= image_tag post.background.url if post.background? %>
-			<%= post.title %>
-			<%= post.content %>
-			<%= post.user.email %>
+		<% @posts.each do |post| %>
+			<div class="post">
+				<%= image_tag post.background.url if post.background? %>
+				<%= post.title %>
+				<%= post.content %>
+				<%= post.user.email %>
+				<%= post.num_comment %>
 				<div class="comment">
 					<label>댓글:</label>
 					<% post.comments.each do |comment| %>

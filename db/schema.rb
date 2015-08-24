@@ -23,11 +23,12 @@ ActiveRecord::Schema.define(version: 20150813072058) do
 
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "title",      null: false
-    t.text     "content",    null: false
+    t.string   "title",                   null: false
+    t.text     "content",                 null: false
+    t.integer  "num_comment", default: 0
     t.string   "background"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "users", force: :cascade do |t|
