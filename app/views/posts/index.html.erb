@@ -14,27 +14,29 @@
 <div class="container">
 	<div class="row">
 		<% @posts.each do |post| %>
-			<div class="post">
-				<%= image_tag post.background.url if post.background? %>
-				<%= post.title %>
-				<%= post.content %>
-				<%= post.user.email %>
-				<div class="comment">
-					<label>댓글:</label>
-					<% post.comments.each do |comment| %>
-						<%= comment.user.email %>
-						<%= comment.content %><br>
-					<% end %>
-					<div class="write-comment">
-						<form action="/posts/comment/<%= current_user.id %>" type="POST">
-							<input type="hidden" value=<%=post.id%> name="post_id" >
-							<input type ="text" value="댓글을 입력해 주세요" name="comment">
-							<input type="submit" value="입력"><br>
-						</form>
-					</div>
-					<div class="likes">
-					</div>
-				</div>	
+			<div class="col-md-4">		
+				<div class="post">
+					<%= image_tag post.background.url if post.background? %>
+					<%= post.title %>
+					<%= post.content %>
+					<%= post.user.email %>
+					<div class="comment">
+						<label>댓글:</label>
+						<% post.comments.each do |comment| %>
+							<%= comment.user.email %>
+							<%= comment.content %><br>
+						<% end %>
+						<div class="write-comment">
+							<form action="/posts/comment/<%= current_user.id %>" type="POST">
+								<input type="hidden" value=<%=post.id%> name="post_id" >
+								<input type ="text" value="댓글을 입력해 주세요" name="comment">
+								<input type="submit" value="입력"><br>
+							</form>
+						</div>
+						<div class="likes">
+						</div>
+					</div>	
+				</div>
 			</div>
 		<% end %>
 	</div>

@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 gem 'devise'
 gem 'carrierwave'
+gem 'mini_magick'
 gem 'pagedown-bootstrap-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
