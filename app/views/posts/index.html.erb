@@ -19,9 +19,8 @@
 				<%= post.title %>
 				<%= post.content %>
 				<%= post.user.email %>
-				<%= post.num_comment %>
 				<div class="comment">
-					<label>댓글:</label>
+					<label style="background-color: #FCCFB8"> <%= post.num_comment %>개의 댓글이 있습니다.</label><br>
 					<% post.comments.each do |comment| %>
 						<%= comment.user.email %>
 						<%= comment.content %><br>
@@ -34,6 +33,7 @@
 						</form>
 					</div>
 					<div class="likes">
+
 					</div>
 				</div>	
 			</div>
