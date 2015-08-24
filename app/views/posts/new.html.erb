@@ -1,6 +1,6 @@
 <div class="container" style="max-width:600px;">
   <h3>새로운 포스트</h3>
-  <%= simple_form_for @post , :url => '/posts/create', :method => 'POST' do |f| %>
+  <%= simple_form_for @post , :url => '/posts/create', :method => 'POST' , html: {multipart: true} do |f| %>
     <%= f.input :title %>
     <%= f.input :user_id,  input_html: { type: "hidden", value: current_user.id } %><p><%=current_user.email%></p>
     <%= f.input :content, as: :pagedown, input_html: { preview: true, rows: 15 } %>
