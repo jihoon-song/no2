@@ -1,4 +1,4 @@
-$ ->
+ready = ->
   $('textarea.wmd-input').each (i, input) ->
     attr = $(input).attr('id').split('wmd-input')[1]
     converter = new Markdown.Converter()
@@ -23,3 +23,7 @@ $ ->
       text.replace /<pre>/g, "<pre class='prettyprint linenums'>"
     $(input).html converter.makeHtml($(input).text().trim())
     prettyPrint()
+
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
