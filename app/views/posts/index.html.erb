@@ -19,6 +19,7 @@
 				<%= post.title %>
 				<%= post.content %>
 				<%= post.user.email %>
+				<%= post.num_comment %>
 				<div class="comment">
 					<label>댓글:</label>
 					<% post.comments.each do |comment| %>

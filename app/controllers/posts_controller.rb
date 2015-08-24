@@ -2,7 +2,8 @@ class PostsController < ApplicationController
 	before_action :authenticate_user!
 	def index
 		# post를 역순으로 가져 옴 
-		@posts = Post.all.reverse
+		@posts = Post.all
+		@posts = @posts.sort_by { |e| e.num_comment }.reverse
 	end
 
 	def new
@@ -16,10 +17,11 @@ class PostsController < ApplicationController
 		comment.post_id = params[:post_id]
 		comment.save
 
-		redirect_to controller: "posts" ,action: "index"
-	end
+		post = Post.find(params[:post_id])
+		post.num_comment += 1
+		post.save
 
-	def like
+		redirect_to controller: "posts" ,action: "index"
 	end
 
 	def my_posts
