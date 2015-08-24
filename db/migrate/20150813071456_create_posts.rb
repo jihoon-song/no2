@@ -7,7 +7,7 @@ class CreatePosts < ActiveRecord::Migration
       t.text :content , null: false
 
       t.string :background
-      t.timestamps null: false
+      t.timestamps :created_at , null: false
     end
   end
 end
