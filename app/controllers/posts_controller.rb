@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
 	before_action :authenticate_user!
 	def index
-		# post를 역순으로 가져 옴 
-		@posts = Post.all.reverse
+		# 댓글이 많은 순서대로 포스트를 정렬
+		@posts = Post.all
+		@posts = @posts.sort_by { |e| e.num_comment }.reverse
 	end
 
 	def new
@@ -16,10 +17,12 @@ class PostsController < ApplicationController
 		comment.post_id = params[:post_id]
 		comment.save
 
-		redirect_to controller: "posts" ,action: "index"
-	end
+		#댓글달면 post의 num_comment로 댓글의 갯수 세기
+		post = Post.find(params[:post_id])
+		post.num_comment += 1
+		post.save
 
-	def like
+		redirect_to controller: "posts" ,action: "index"
 	end
 
 	def my_posts
@@ -36,6 +39,6 @@ class PostsController < ApplicationController
 	private
 
 	def post_params
-		params.require(:post).permit(:title, :content, :user_id)
+		params.require(:post).permit(:title, :content, :user_id, :background)
 	end
 end
