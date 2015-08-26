@@ -20,34 +20,37 @@
       <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
     </div>
 
-    <div class="row marketing">
-        <% @posts.each do |post| %>
-        <div class="col-md-4">
-					<div class="post">
-						<%= image_tag post.background.url if post.background? %>
-						<%= post.title %>
-						<%= post.content %>
-						<%= post.user.email %> 
-						<a class="btn" href="/posts/delete/<%= post.id %>">X</a>
-						<div class="comment">
-							<label style="background-color: #FCCFB8"> <%= post.num_comment %>개의 댓글이 있습니다.</label><br>
-							<% post.comments.each do |comment| %>
-							<%= comment.user.email %>
-							<%= comment.content %><br>
-							<% end %>
-						</div>
-						<div class="write-comment">
-							<form action="/posts/comment/<%= current_user.id %>" type="POST">
-								<input type="hidden" value=<%=post.id%> name="post_id" >
-								<input type ="text" placeholder="댓글을 입력해 주세요" name="comment">
-								<input type="submit" value="입력"><br>
-							</form>
-						</div>
-						<div class="likes">
-						</div>
-					</div>	
-			<% end %>
-      </div>
-    </div>
+	<div class="container">
+	    <div class="row marketing">
+	        <% @posts.each do |post| %>
+	        <div class="col-md-6">
+						<div class="post">
+							<%= image_tag post.background.url if post.background? %><br>
+							<%= post.title %><br>
+							<%= post.content %><br>
+							<%= post.user.email %> 
+							<a class="btn" href="/posts/delete/<%= post.id %>">X</a>
+							<div class="comment">
+								<label style="background-color: #FCCFB8"> <%= post.num_comment %>개의 댓글이 있습니다.</label><br>
+								<% post.comments.each do |comment| %>
+								<%= comment.user.email %>
+								<%= comment.content %><br>
+								<% end %>
+							</div>
+							<div class="write-comment">
+								<form action="/posts/comment/<%= current_user.id %>" type="POST">
+									<input type="hidden" value=<%=post.id%> name="post_id" >
+									<input type ="text" placeholder="댓글을 입력해 주세요" name="comment">
+									<input type="submit" value="입력"><br>
+								</form>
+							</div>
+							<div class="likes">
+							</div>
+						</div>	
+					</div>
+				<% end %>
+	      </div>
+
+    	</div>
 	</div>
 </div>
