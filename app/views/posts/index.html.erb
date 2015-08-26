@@ -29,20 +29,14 @@
 							<%= image_tag post.background.url if post.background? %>
 						</div>
 						<br class="clear">
-						<%= post.content %>
-						<%= post.user.email %>
+						<p class="post-content"><%= post.content %></p>
+						<p class="user-email"><%= post.user.email %></p>
 						<!-- 자세히 보기 -->
 						<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#seemore">
-						  자세히 보기
+						  	자세히 보기
 						</button> 
-						<a class="btn" href="/posts/delete/<%= post.id %>">X</a>
-						<div class="comment">
-							<label style="background-color: #FCCFB8"> <%= post.num_comment %>개의 댓글이 있습니다.</label><br>
-							<% post.comments.each do |comment| %>
-							<%= comment.user.email %>
-							<%= comment.content %><br>
-							<% end %>
-						</div>
+						<!-- 포스트 제거 -->
+						<a class="btn" href="/posts/delete/<%= post.id %>" data-confirm='Are you sure?'>X</a>
 					</div>
 
 					<!-- Modal -->
@@ -58,7 +52,7 @@
 										<%= image_tag post.background.url if post.background? %>
 									</div>
 									<br class="clear">
-									<%= post.content %>
+									<p class="modal-post-content"><%= post.content %></p>
 									<%= post.user.email %>
 					      </div>
 					      <div class="write-comment">
@@ -67,6 +61,13 @@
 										<textarea placeholder="" name="comment" placeholder="댓글을 입력해 주세요"></textarea>
 										<button class="btn" value="입력">댓글달기<br>
 									</form>
+								</div>
+								<div class="comment">
+									<label style="background-color: #FCCFB8"> <%= post.num_comment %>개의 댓글이 있습니다.</label><br>
+									<% post.comments.each do |comment| %>
+									<%= comment.user.email %>
+									<%= comment.content %><br>
+									<% end %>
 								</div>
 								<div class="likes">
 								</div>
