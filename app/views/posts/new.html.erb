@@ -4,8 +4,7 @@
     <%= f.input :title %>
     <%= f.input :user_id,  input_html: { type: "hidden", value: current_user.id } %><p><%=current_user.email%></p>
     <%= f.input :content, as: :pagedown, input_html: { preview: true, rows: 15 } %>
-    <%= f.input :num_comment, input_html: { type: "hidden", value:0 } %>
-    <%= f.input :background , as: :file %> 
+    <%= f.input :background , as: :file %>
     <%= f.button :submit %>
   <% end %>
 </div>
