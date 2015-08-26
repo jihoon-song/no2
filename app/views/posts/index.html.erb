@@ -23,7 +23,7 @@
 <div class="container">
 	<div class="row marketing">
 		<% @posts.each do |post| %>
-		<div class="col-md-6">
+			<div class="col-md-6">
 					<div class="post">
 						<%= post.title %>
 						<div id="container imagewrapper">
@@ -33,7 +33,7 @@
 						<p class="post-content"><%= post.content %></p>
 						<p class="user-email"><%= post.user.email %></p>
 						<!-- 자세히 보기 -->
-						<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#seemore">
+						<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#seemore-<%=post.id%>">
 							자세히 보기
 						</button> 
 						<!-- 포스트 제거 -->
@@ -41,7 +41,7 @@
 					</div>
 
 					<!-- Modal -->
-					<div class="modal fade" id="seemore" tabindex="-1" role="dialog" aria-labelledby="seemoreLabel">
+					<div class="modal fade" id="seemore-<%=post.id%>" tabindex="-1" role="dialog" aria-labelledby="seemoreLabel">
 					  <div class="modal-dialog" role="document">
 						<div class="modal-content">
 						  <div class="modal-header">
@@ -58,10 +58,10 @@
 						 </div>
 						 <div class="write-comment">
 								<form action="/posts/comment/<%= current_user.id %>" type="POST">
-									<input type="hidden" value=<%=post.id%> name="post_id" >
-									<textarea placeholder="" name="comment" placeholder="댓글을 입력해 주세요"></textarea>
-									<button class="btn" value="입력">댓글달기<br>
-								</form>
+							<input type="hidden" value="<%=post.id%>" name="post_id" >
+							<textarea placeholder="" name="comment" placeholder="댓글을 입력해 주세요" style="margin: 0px; width: 88%; height:40px;"></textarea>
+							<button class="btn" value="입력" style="float:right; color:black">입력</button>
+						</form>
 						</div>
 								<div class="comment">
 									<label style="background-color: #FCCFB8"> <%= post.num_comment %>개의 댓글이 있습니다.</label><br>
@@ -73,8 +73,7 @@
 								<div class="likes">
 								</div>
 						  <div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-							<button type="button" class="btn btn-primary">Save changes</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
 						  </div>
 						</div>
 					  </div>

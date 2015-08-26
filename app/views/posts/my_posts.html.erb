@@ -1,13 +1,72 @@
+<div class="container-fluid">
+	<div class="col-lg-10 col-lg-offset-1">
+
+		<!-- 위쪽 Navbar -->
+		<div class="clearfix" id="nav-container" >
+			<nav class="navbar">
+				<ul class="nav navbar-nav navbar-left">
+					<li role="presentation"><a class="btn btn-lg" href="/posts/index">별 헤는 밤</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li role="presentation"><a class="btn" href="/posts/">뉴스피드</a></li>
+					<li role="presentation"><a class="btn" href="/posts/new">글 쓰기</a></li>
+				</ul>
+			</nav>
+		</div>
+
 <% @current_user.posts.each do |post| %>
 	<div class="post">
-		<%= image_tag post.background.url if post.background? %>
 		<%= post.title %>
-		<%= post.content %>
-		<%= post.user.email %>
-		<label>댓글:</label>
-		<% post.comments.each do |comment| %>
-			<%= comment.user.email %>
-			<%= comment.content %><br>
-		<% end %>
+		<div id="container imagewrapper">
+			<%= image_tag post.background.url if post.background? %>
+		</div>
+		<br class="clear">
+		<p class="post-content"><%= post.content %></p>
+		<p class="user-email"><%= post.user.email %></p>
+		<!-- 자세히 보기 -->
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#seemore-<%=post.id%>">
+			자세히 보기
+		</button> 
+		<!-- 포스트 제거 -->
+		<a class="btn" href="/posts/delete/<%= post.id %>" data-confirm='Are you sure?'>X</a>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="seemore-<%=post.id%>" tabindex="-1" role="dialog" aria-labelledby="seemoreLabel">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel"><%= post.title%></h4>
+		  </div>
+		 <div class="modal-body">
+			<div id="container imagewrapper">
+						<%= image_tag post.background.url if post.background? %>
+					</div>
+					<br class="clear">
+					<p class="modal-post-content"><%= post.content %></p>
+					<%= post.user.email %>
+		 </div>
+		 <div class="write-comment">
+				<form action="/posts/comment/<%= current_user.id %>" type="POST">
+			<input type="hidden" value="<%=post.id%>" name="post_id" >
+			<textarea placeholder="" name="comment" placeholder="댓글을 입력해 주세요" style="margin: 0px; width: 88%; height:40px;"></textarea>
+			<button class="btn" value="입력" style="float:right; color:black">입력</button>
+		</form>
+		</div>
+				<div class="comment">
+					<label style="background-color: #FCCFB8"> <%= post.num_comment %>개의 댓글이 있습니다.</label><br>
+					<% post.comments.each do |comment| %>
+					<%= comment.user.email %>
+					<%= comment.content %><br>
+					<% end %>
+				</div>
+				<div class="likes">
+				</div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
+		  </div>
+		</div>
+	  </div>
 	</div>
 <% end %>
