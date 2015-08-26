@@ -19,6 +19,14 @@
 @import "font-awesome";
 @import "google-code-prettify-rails/prettify";
 
+@font-face {
+  font-family: 'nanumbrush';
+  src:font-url('NanumBrush.ttf');
+  src:font-url('NanumBrush.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 // Pagedown Editor
 #wmd-button-bar-content {
