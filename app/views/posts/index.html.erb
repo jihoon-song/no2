@@ -19,7 +19,7 @@
       <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
       <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
     </div>
-
+    <div class="container">
     <div class="row marketing">
         <% @posts.each do |post| %>
         <div class="col-md-4">
@@ -32,8 +32,8 @@
 						<%= post.content %>
 						<%= post.user.email %>
 						<!-- 자세히 보기 -->
-						<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#seemore">
-						  자세히 보기
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#seemore">
+						  보기
 						</button> 
 						<a class="btn" href="/posts/delete/<%= post.id %>">X</a>
 						<div class="comment">
@@ -44,7 +44,7 @@
 							<% end %>
 						</div>
 					</div>
-
+					</div>
 					<!-- Modal -->
 					<div class="modal fade" id="seemore" tabindex="-1" role="dialog" aria-labelledby="seemoreLabel">
 					  <div class="modal-dialog" role="document">
@@ -61,15 +61,13 @@
 									<%= post.content %>
 									<%= post.user.email %>
 					      </div>
-					      <div class="write-comment">
-									<form action="/posts/comment/<%= current_user.id %>" type="POST">
-										<input type="hidden" value=<%=post.id%> name="post_id" >
-										<textarea placeholder="" name="comment" placeholder="댓글을 입력해 주세요"></textarea>
-										<button class="btn" value="입력">댓글달기<br>
-									</form>
-								</div>
-								<div class="likes">
-								</div>
+					      	<div class="write-comment" style="padding:10px">
+								<form action="/posts/comment/<%= current_user.id %>" type="POST">
+									<input type="hidden" value="<%=post.id%>" name="post_id" >
+									<textarea placeholder="" name="comment" placeholder="댓글을 입력해 주세요" style="margin: 0px; width: 88%; height:40px;"></textarea>
+									<button class="btn" value="입력" style="float:right; color:black">입력</button>
+								</form>
+							</div>
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 					        <button type="button" class="btn btn-primary">Save changes</button>
@@ -80,6 +78,7 @@
 
 			<% end %>
       </div>
+  </div>
     </div>
 
 
