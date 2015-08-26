@@ -16,3 +16,5 @@ Rails.application.config.assets.precompile += %w( font-awesome.css )
 
 Rails.application.config.assets.precompile += %w( pagedown_init.js )
 Rails.application.config.assets.precompile += %w( application.js )
+
+Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
