@@ -61,6 +61,37 @@
 							<input type="hidden" value=<%=post.id%> name="post_id" >
 							<textarea name="comment" style="width:90%; height:40px;" placeholder="댓글을 입력해 주세요"></textarea>
 							<button style="float:right; width:10%; color:black; height:40px;" class="btn" value="입력">달기</button>
+						<p class="post-content" style="text-align:center;"><%= post.content %></p>
+						<p class="user-email"><%= post.user.email %></p>
+						<!-- 자세히 보기 -->
+						<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#seemore-<%=post.id%>">
+							자세히 보기
+						</button> 
+						<!-- 포스트 제거 -->
+						<a class="btn" href="/posts/delete/<%= post.id %>" data-confirm='Are you sure?'>X</a>
+					</div>
+
+					<!-- Modal -->
+					<div class="modal fade" id="seemore-<%=post.id%>" tabindex="-1" role="dialog" aria-labelledby="seemoreLabel">
+					  <div class="modal-dialog" role="document">
+						<div class="modal-content">
+						  <div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel"><%= post.title%></h4>
+						  </div>
+						 <div class="modal-body">
+							<div id="container imagewrapper">
+										<%= image_tag post.background.url , :style=>"margin: 0px auto;display:block" if post.background? %>
+									</div>
+									<br class="clear">
+									<p class="modal-post-content"><%= post.content %></p>
+									<%= post.user.email %>
+						 </div>
+						 <div class="write-comment">
+								<form action="/posts/comment/<%= current_user.id %>" type="POST">
+							<input type="hidden" value="<%=post.id%>" name="post_id" >
+							<textarea placeholder="" name="comment" placeholder="댓글을 입력해 주세요" style="margin: 0px; width: 88%; height:40px;"></textarea>
+							<button class="btn" value="입력" style="float:right; color:black">입력</button>
 						</form>
 				</div>
 						<div class="comment">
