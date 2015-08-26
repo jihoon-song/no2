@@ -10,6 +10,12 @@ class PostsController < ApplicationController
 		@post = Post.new
 	end
 
+	def delete
+		post = Post.find(params[:id])
+		post.delete
+		redirect_to controller: "posts",action: "index"
+	end
+
 	def comment
 		comment = Comment.new
 		comment.content = params[:comment]
