@@ -14,16 +14,22 @@
 			</nav>
 		</div>
 
-		<div class="container">
-			<div class="row">
-				<% @posts.each do |post| %>
 
-				<div class="col-md-4">
+    <div class="jumbotron">
+      <h1>Jumbotron heading</h1>
+      <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+      <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+    </div>
+
+    <div class="row marketing">
+        <% @posts.each do |post| %>
+        <div class="col-lg-6">
 					<div class="post">
 						<%= image_tag post.background.url if post.background? %>
 						<%= post.title %>
 						<%= post.content %>
-						<%= post.user.email %>
+						<%= post.user.email %> 
+						<a class="btn" href="/posts/delete/<%= post.id %>">X</a>
 						<div class="comment">
 							<label style="background-color: #FCCFB8"> <%= post.num_comment %>개의 댓글이 있습니다.</label><br>
 							<% post.comments.each do |comment| %>
@@ -41,10 +47,8 @@
 						<div class="likes">
 						</div>
 					</div>	
-				</div>
 			<% end %>
-			</div>
-		</div>
-
+      </div>
+    </div>
 	</div>
 </div>
