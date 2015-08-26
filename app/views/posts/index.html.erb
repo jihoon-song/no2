@@ -24,13 +24,13 @@
 	<div class="row marketing">
 		<% @posts.each do |post| %>
 		<div class="col-md-6">
-					<div class="post">
+					<div class="post" style="width:100%">
 						<%= post.title %>
 						<div id="container imagewrapper">
 							<%= image_tag post.background.url if post.background? %>
 						</div>
 						<br class="clear">
-						<p class="post-content"><%= post.content %></p>
+						<p class="post-content" style="text-align:center;"><%= post.content %></p>
 						<p class="user-email"><%= post.user.email %></p>
 						<!-- 자세히 보기 -->
 						<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#seemore">

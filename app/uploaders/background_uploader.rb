@@ -5,7 +5,7 @@ class BackgroundUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
    include CarrierWave::MiniMagick
-    process resize_to_fit: [510, nil]
+    process resize_to_fit: [496.5, nil]
 
   # Choose what kind of storage to use for this uploader:
   storage :file
