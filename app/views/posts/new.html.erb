@@ -1,11 +1,38 @@
-<div class="container" style="max-width:600px;">
-  <h3>새로운 포스트</h3>
-  <%= simple_form_for @post , :url => '/posts/create', :method => 'POST' , html: {multipart: true} do |f| %>
-    <%= f.input :title %>
-    <%= f.input :user_id,  input_html: { type: "hidden", value: current_user.id } %><p><%=current_user.email%></p>
-    <%= f.input :content, as: :pagedown, input_html: { preview: true, rows: 15 } %>
-    <%= f.input :num_comment, input_html: { type: "hidden", value:0 } %>
-    <%= f.input :background , as: :file %> 
-    <%= f.button :submit %>
-  <% end %>
+<div class="container-fluid">
+	<div class="col-lg-10 col-lg-offset-1">
+
+		<!-- 위쪽 Navbar -->
+		<div class="clearfix" id="nav-container" >
+			<nav class="navbar">
+				<ul class="nav navbar-nav navbar-left">
+					<li role="presentation"><a class="btn btn-lg" href="/posts/index">별 헤는 밤</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li role="presentation"><a class="btn" href="/posts/">뉴스피드</a></li>
+					<li role="presentation"><a class="btn" href="/posts/my_posts/<%=current_user.id%>">나의 글</a></li>
+				</ul>
+			</nav>
+		</div>
+
+
+		<div class="container" style="max-width:600px;">
+			<h3>새로운 포스트</h3>
+			<%= simple_form_for @post , :url => '/posts/create', :method => 'POST' , html: {multipart: true} do |f| %>
+				<%= f.input :title %>
+				<%= f.input :user_id,  input_html: { type: "hidden", value: current_user.id } %><p><%=current_user.email%></p>
+				<%= f.input :content, as: :pagedown, input_html: { preview: true, rows: 15 } %>
+				<%= f.input :num_comment, input_html: { type: "hidden", value:0 } %> 
+				<% @images.each do |image| %>
+					<div class="button" style="display:inline-block">
+						<input type="radio" id="radio-<%= image.id %>" name="post[image_id]" value="<%= image.id %>">
+						<label for="radio-<%= image.id %>">
+							<img src="<%=image.url.url%>" style="height:135px; width:135px; margin:2px;"/>
+						</label>
+					</div>
+				<% end %>
+				<%= f.button :submit %>
+			<% end %>
+		</div>
+
+	</div>
 </div>

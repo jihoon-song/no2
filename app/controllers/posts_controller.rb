@@ -8,6 +8,7 @@ class PostsController < ApplicationController
 
 	def new
 		@post = Post.new
+		@images = Image.all
 	end
 
 	def delete
@@ -36,15 +37,20 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		@post = Post.new(post_params)
-		@post.save
+		post = Post.new(post_params)
+		image = Image.find(image_params["image_id"])
+		post.background = image.url
+		post.save
 		redirect_to controller: "posts" ,action: "index"
-	
 	end
 
 	private
 
 	def post_params
 		params.require(:post).permit(:title, :content, :user_id, :background)
+	end
+
+	def image_params
+		params.require(:post).permit(:image_id)
 	end
 end

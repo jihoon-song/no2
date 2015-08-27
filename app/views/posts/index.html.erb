@@ -33,7 +33,7 @@
 				<p class="post-content"><%= post.content %></p>
 				<p class="user-email"><%= post.user.email %></p>
 				<!-- 자세히 보기 -->
-				<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#seemore">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#seemore-<%= post.id %>">
 					자세히 보기
 				</button> 
 				<!-- 포스트 제거 -->
@@ -41,7 +41,7 @@
 			</div>
 
 			<!-- Modal -->
-			<div class="modal fade" id="seemore" tabindex="-1" role="dialog" aria-labelledby="seemoreLabel">
+			<div class="modal fade" id="seemore-<%= post.id %>" tabindex="-1" role="dialog" aria-labelledby="seemoreLabel">
 			  <div class="modal-dialog" role="document">
 				<div class="modal-content" style="padding:10px">
 				  <div class="modal-header">
@@ -50,7 +50,7 @@
 				  </div>
 				 <div class="modal-body">
 					<div id="container imagewrapper">
-						<%= image_tag post.background.url if post.background? %>
+						<%= image_tag post.background.url , :style => "margin: 0 auto; display:block;"  if post.background? %>
 						</div>
 						<br class="clear">
 						<p class="modal-post-content"><%= post.content %></p>
@@ -66,13 +66,11 @@
 						<div class="comment">
 							<label style="background-color: #FCCFB8; color:black;"> <%= post.num_comment %>개의 댓글이 있습니다.</label><br>
 							<% post.comments.each do |comment| %>
-							작성자:<%= comment.user.email %>
-							<%= comment.content %><br>
+							<%= comment.user.email %> : <%= comment.content %><br>
 							<% end %>
 						</div>
 				  <div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
 				  </div>
 				</div>
 			  </div>

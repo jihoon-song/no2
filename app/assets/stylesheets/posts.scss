@@ -32,3 +32,10 @@ footer{
 	font-family: nanumbrush;
 	font-size:50px;
 }
+
+input[type="radio"] {
+    display: none;
+}
+input[type="radio"]:checked + label {
+    border: 1px solid white;
+}
