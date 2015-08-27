@@ -8,8 +8,6 @@
 
 
 User.create(email: 'test@likelion.com', password: "12345678")
-Post.create(user_id: 1 , title: 'This is a post title', content: "This is a post content")
-Comment.create(user_id: 1, post_id: 1 , content: "This is a comment")
 
 
 
