@@ -9,6 +9,14 @@
 
 User.create(email: 'test@likelion.com', password: "12345678")
 
-Post.create(user_id: 1 , title: 'This is a post title', content: "This is a post content")
 
-Comment.create(user_id: 1, post_id: 1 , content: "This is a comment")
+
+# Seed the database with background images from the public/img/ 
+(1...9).to_a.each do |i|
+	image = Image.new
+	address = ('public/img/' + i.to_s + '.jpg')
+	File.open(address) do |f|
+	  image.url = f
+	end
+	image.save!
+end

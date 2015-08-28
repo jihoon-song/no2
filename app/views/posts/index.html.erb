@@ -14,104 +14,75 @@
 			</nav>
 		</div>
 
-	<div class="jumbotron">
-	  <h1>Jumbotron heading</h1>
-	  <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-	  <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
-	</div>
+		<div class="jumbotron">
+			<h1>Jumbotron heading</h1>
+			<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+			<p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+		</div>
 
-<div class="container">
-	<div class="row marketing">
-		<% @posts.each do |post| %>
-		<div class="col-md-6">
-			<div class="post">
-				<%= post.title %>
-				<div id="container imagewrapper">
-					<%= image_tag post.background.url if post.background? %>
-				</div>
-				<br class="clear">
-				<p class="post-content"><%= post.content %></p>
-				<p class="user-email"><%= post.user.email %></p>
-				<!-- 자세히 보기 -->
-				<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#seemore">
-					자세히 보기
-				</button> 
-				<!-- 포스트 제거 -->
-				<a class="btn" href="/posts/delete/<%= post.id %>" data-confirm='Are you sure?'>X</a>
-			</div>
 
-			<!-- Modal -->
-			<div class="modal fade" id="seemore" tabindex="-1" role="dialog" aria-labelledby="seemoreLabel">
-			  <div class="modal-dialog" role="document">
-				<div class="modal-content" style="padding:10px">
-				  <div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel"><%= post.title%></h4>
-				  </div>
-				 <div class="modal-body">
-					<div id="container imagewrapper">
-						<%= image_tag post.background.url if post.background? %>
+				<% @posts.each do |post| %>
+				<div class="col-md-6">
+					<div class="post">
+						<div class="postheader">
+							<h4><%= post.title %></h4>
+							<h5 class="user-email" style="text-align:right"><%= post.user.email %> | <%=post.created_at.strftime('%a, %d %b %Y %H:%M:%S')%></h5>
 						</div>
-						<br class="clear">
-						<p class="modal-post-content"><%= post.content %></p>
-						<%= post.user.email %>
-				 </div>
-				 <div class="write-comment">
-						<form action="/posts/comment/<%= current_user.id %>" type="POST">
-							<input type="hidden" value=<%=post.id%> name="post_id" >
-							<textarea name="comment" style="width:90%; height:40px;" placeholder="댓글을 입력해 주세요"></textarea>
-							<button style="float:right; width:10%; color:black; height:40px;" class="btn" value="입력">달기</button>
-						<p class="post-content" style="text-align:center;"><%= post.content %></p>
-						<p class="user-email"><%= post.user.email %></p>
-						<!-- 자세히 보기 -->
-						<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#seemore-<%=post.id%>">
-							자세히 보기
-						</button> 
-						<!-- 포스트 제거 -->
-						<a class="btn" href="/posts/delete/<%= post.id %>" data-confirm='Are you sure?'>X</a>
+						<div id="container imagewrapper" style="height:100%; width:100%;">
+							<%= image_tag post.background.url , :style=>"margin:0 auto; display:block; opacity:0.5;" if post.background? %>
+						</div>
+						<div id="textwrapper" style="position:absolute; height: 743px; width: 542.5px; top: 60px; left:0;">
+							<p class="modal-post-content" style="font-size: 30px; margin:85px; white-space: pre-wrap;"><%= post.content %></p>
+						</div>
+						<br class="clear">		
+						<div id="buttons">
+							<!-- 자세히 보기 -->
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#seemore-<%= post.id %>">
+								자세히 보기
+							</button> 
+							<!-- 포스트 제거 -->
+							<a class="btn" style="float:right" href="/posts/delete/<%= post.id %>" data-confirm='Are you sure?'>X</a>
+						</div>
 					</div>
 
 					<!-- Modal -->
-					<div class="modal fade" id="seemore-<%=post.id%>" tabindex="-1" role="dialog" aria-labelledby="seemoreLabel">
-					  <div class="modal-dialog" role="document">
-						<div class="modal-content">
-						  <div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title" id="myModalLabel"><%= post.title%></h4>
-						  </div>
-						 <div class="modal-body">
-							<div id="container imagewrapper">
-										<%= image_tag post.background.url , :style=>"margin: 0px auto;display:block" if post.background? %>
+					<div class="modal fade" id="seemore-<%= post.id %>" tabindex="-1" role="dialog" aria-labelledby="seemoreLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content" style="padding:10px">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="myModalLabel"><%= post.title%></h4>
+								</div>
+								<div class="modal-body" style="padding:15px 11.5px 15px 11.5px;">
+									<div id="container imagewrapper" style="position:relative; height:833px; width:555px;">
+										<%= image_tag post.background.url , :style=>"margin:0 auto; display:block; opacity:0.5;" if post.background? %>
 									</div>
-									<br class="clear">
-									<p class="modal-post-content"><%= post.content %></p>
+									<div id="textwrapper" style="position:absolute; height:100%; width:100%; top:0; left:0;">
+										<p class="modal-post-content" style="font-size: 30px; margin:70px; white-space: pre-wrap;"><%= post.content %></p>
+									</div>		
 									<%= post.user.email %>
-						 </div>
-						 <div class="write-comment">
-								<form action="/posts/comment/<%= current_user.id %>" type="POST">
-							<input type="hidden" value="<%=post.id%>" name="post_id" >
-							<textarea placeholder="" name="comment" placeholder="댓글을 입력해 주세요" style="margin: 0px; width: 88%; height:40px;"></textarea>
-							<button class="btn" value="입력" style="float:right; color:black">입력</button>
-						</form>
-				</div>
-						<div class="comment">
-							<label style="background-color: #FCCFB8; color:black;"> <%= post.num_comment %>개의 댓글이 있습니다.</label><br>
-							<% post.comments.each do |comment| %>
-							작성자:<%= comment.user.email %>
-							<%= comment.content %><br>
-							<% end %>
+								</div>
+								<div class="write-comment">
+									<form action="/posts/comment/<%= current_user.id %>" type="POST">
+										<input type="hidden" value=<%=post.id%> name="post_id" >
+										<textarea name="comment" style="width:90%; height:40px;" placeholder="댓글을 입력해 주세요"></textarea>
+										<button style="float:right; width:10%; color:black; height:40px;" class="btn" value="입력">달기</button>
+									</form>
+								</div>
+								<div class="comment">
+									<label style="background-color: #FCCFB8; color:black;"> <%= post.num_comment %>개의 댓글이 있습니다.</label><br>
+									<% post.comments.each do |comment| %>
+									<%= comment.user.email %> : <%= comment.content %><br>
+									<% end %>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
+								</div>
+							</div>
 						</div>
-				  <div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
-				  </div>
+					</div>
 				</div>
-			  </div>
-			</div>
-		</div>
-		<% end %>
-	  </div>
-	</div>
+				<% end %>
 	</div>
 </div>
 </div>
