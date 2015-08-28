@@ -26,14 +26,16 @@
 					<div class="post">
 						<div class="postheader">
 							<h4><%= post.title %></h4>
-							<h5 class="user-email" style="text-align:right"><%= post.user.email %> | <%=post.created_at.strftime('%a, %d %b %Y %H:%M:%S')%></h5>
+							<h5 class="user-email" style="text-align:right"><%= post.user.username %> | <%=post.created_at.strftime('%a, %d %b %Y %H:%M:%S')%></h5>
 						</div>
 						<div id="container imagewrapper" style="height:100%; width:100%;">
 							<%= image_tag post.background.url , :style=>"margin:0 auto; display:block; opacity:0.5;" if post.background? %>
 						</div>
-						<div id="textwrapper" style="position:absolute; height: 743px; width: 542.5px; top: 60px; left:0;">
-							<p class="modal-post-content" style="font-size: 30px; margin:85px; white-space: pre-wrap;"><%= post.content %></p>
-						</div>
+						<%if post.background? %>
+							<div id="textwrapper" style="position:absolute; height: 743px; width: 542.5px; top: 60px; left:0;">
+								<p class="modal-post-content" style="font-size: 30px; margin:85px; white-space: pre-wrap;"><%= post.content %></p>
+							</div>
+						<% end %>
 						<br class="clear">		
 						<div id="buttons">
 							<!-- 자세히 보기 -->
